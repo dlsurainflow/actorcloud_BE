@@ -63,6 +63,8 @@ def device_auth():
 
 @bp.route('/emqx/callback', methods=['POST'])
 def backend_callback():
+    content = request.get_json()
+    console.log(content)
     request_dict = request.get_json()
     request_dict['callback_date'] = datetime.now()
     if not request_dict:
@@ -106,7 +108,7 @@ def client_disconnected_callback(request_dict) -> None:
         'connectStatus': 0
     }
     connect_log = ConnectLog()
-    connect_log.create(request_dict=connect_dict, commit=False)
+    connect_log.create(request_dict=connect_dict, commit=True)
     device.deviceStatus = 0
     device.update()
 

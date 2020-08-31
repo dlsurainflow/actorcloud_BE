@@ -51,6 +51,7 @@ class Device(BaseModel):
     lastConnection = db.Column(db.DateTime)
     blocked = db.Column(db.SmallInteger, server_default='0')  # 0:false 1:true
     deviceStatus = db.Column(db.SmallInteger, server_default='0')  # 0:offline 1:online 2:sleep
+    showOnMap = db.Column(db.SmallInteger, server_default='0') # 0:false 1:true
     location = db.Column(db.String(300))
     longitude = db.Column(db.Float)
     latitude = db.Column(db.Float)

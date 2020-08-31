@@ -28,6 +28,7 @@ class BaseDeviceSchema:
     latitude = EmqFloat(allow_none=True)
     longitude = EmqFloat(allow_none=True)
     blocked = EmqInteger(allow_none=True)
+    showOnMap = EmqInteger(allow_none=True)
     manufacturer = EmqString(allow_none=True)
     serialNumber = EmqString(allow_none=True)
     softVersion = EmqString(allow_none=True)

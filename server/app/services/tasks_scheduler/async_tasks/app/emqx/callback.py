@@ -35,7 +35,7 @@ async def backend_callback(request_dict):
 
 async def client_disconnected_callback(request_dict) -> None:
     device_info = await _query_device_info(
-        request_dict.get('client_id'),
+        request_dict.get('clientid'),
         request_dict.get('username'),
     )
     connect_dict = {
@@ -57,7 +57,7 @@ async def client_connected_callback(request_dict) -> None:
     """ Device connected subscribe inbox topic """
 
     device_info = await _query_device_info(
-        request_dict.get('client_id'),
+        request_dict.get('clientid'),
         request_dict.get('username'),
     )
     if device_info['protocol'] == 'lwm2m':
@@ -71,7 +71,7 @@ async def client_connected_callback(request_dict) -> None:
     request_json = {
         'topic': auto_sub_topic,
         'qos': 1,
-        'client_id': device_info['deviceID']
+        'clientid': device_info['deviceID']
     }
     emqx_sub_url = f"{project_config['EMQX_API']}/mqtt/subscribe"
     async with AsyncHttp(auth=project_config['EMQX_AUTH']) as async_http:
@@ -84,7 +84,7 @@ async def client_connected_callback(request_dict) -> None:
 async def message_acked_callback(request_dict) -> None:
     """ Update the publish status when the device receives the publish message """
 
-    device_id = request_dict.get('client_id')
+    device_id = request_dict.get('clientid')
     payload = request_dict.get('payload')
     if device_id == 'pulsario___emqx_all_0':
         # rule_engine filter
