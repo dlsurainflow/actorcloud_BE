@@ -11459,10 +11459,10 @@ vuex-router-sync@^5.0.0:
   resolved "https://registry.yarnpkg.com/vuex-router-sync/-/vuex-router-sync-5.0.0.tgz#1a225c17a1dd9e2f74af0a1b2c62072e9492b305"
   integrity sha512-Mry2sO4kiAG64714X1CFpTA/shUH1DmkZ26DFDtwoM/yyx6OtMrc+MxrU+7vvbNLO9LSpgwkiJ8W+rlmRtsM+w==
 
-vuex-shared-mutations@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/vuex-shared-mutations/-/vuex-shared-mutations-0.0.4.tgz#7d884e8a907fbe5594afb68f426129d1bf5eebc5"
-  integrity sha512-ZcXOBo4Eof1TZ6oy68pQejHZ1w5qEU5l4oNWNFqRZVCHQRIDjikOv7dzK+rXulvh6BCcpTik8ofbGcbxShkMXA==
+vuex-shared-mutations@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/vuex-shared-mutations/-/vuex-shared-mutations-1.0.2.tgz#c5b31fefc29a25be3ca555430d9526ffdd51c199"
+  integrity sha512-tu+rN4DAtZQiRAHLms6OtYdtoK60sKD0CXAP1l+N4lB1rYxJC/cDVGsjXGB/A4p7qIUVb4Mzr8C2Pg1wZlrikA==
 
 vuex@^3.5.1:
   version "3.5.1"
