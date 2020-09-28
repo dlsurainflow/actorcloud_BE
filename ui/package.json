@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
-    "codemirror": "^5.58.0",
+    "codemirror": "^5.58.1",
     "css-element-queries": "^1.2.3",
     "dateformat": "^3.0.3",
     "echarts": "^4.9.0",
@@ -29,7 +29,7 @@
     "vue-amap": "^0.5.10",
     "vue-grid-layout": "^2.3.8",
     "vue-i18n": "^8.21.1",
-    "vue-router": "^3.4.3",
+    "vue-router": "^3.4.5",
     "vuex": "^3.5.1",
     "vuex-router-sync": "^5.0.0",
     "vuex-shared-mutations": "^1.0.2"
@@ -48,7 +48,7 @@
     "chai": "^4.1.2",
     "countup.js": "^2.0.7",
     "crypto-js": "^4.0.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.10.0",
     "eslint-plugin-vue": "^6.2.2",
     "husky": "^4.3.0",
     "node-sass": "^4.14.1",
