@@ -106,10 +106,10 @@
                 <span></span>
                 {{ $t('dashboard.offlineNum') }}：{{ currentCount.status.offline }}
               </li>
-              <li>
+              <!-- <li>
                 <span></span>
                 {{ $t('dashboard.sleepNum') }}：{{ currentCount.status.sleep }}
-              </li>
+              </li> -->
             </el-col>
           </el-row>
         </el-card>
@@ -175,7 +175,7 @@
     </el-row>
 
     <!-- Message count -->
-    <el-row class="metrics-charts line-chart">
+    <!-- <el-row class="metrics-charts line-chart">
       <el-card class="box-card">
         <template slot="header">
           <div class="header--title">{{ $t('dashboard.message') }}</div>
@@ -226,10 +226,10 @@
           </li>
         </div>
       </el-card>
-    </el-row>
+    </el-row> -->
 
     <!-- Traffic Statistics -->
-    <el-row class="metrics-charts line-chart">
+    <!-- <el-row class="metrics-charts line-chart">
       <el-card class="box-card">
         <template slot="header">
           <div class="header--title">{{ $t('dashboard.traffic') }}（KB）</div>
@@ -280,7 +280,7 @@
           </li>
         </div>
       </el-card>
-    </el-row>
+    </el-row> -->
 
     <!-- <el-row>
       <el-card class="box-card">

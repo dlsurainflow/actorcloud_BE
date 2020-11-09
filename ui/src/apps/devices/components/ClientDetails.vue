@@ -44,7 +44,7 @@
                       v-show="record.deviceID"
                       class="material-icons copy-icon"
                       @click="copyText(record.deviceID)">
-                      check
+                      content_copy
                     </i>
                   </el-tooltip>
                   <span>{{ record.deviceID }}</span>
@@ -57,7 +57,7 @@
                       v-show="record.token"
                       class="material-icons copy-icon"
                       @click="copyText(record.token)">
-                      check
+                      content_copy
                     </i>
                   </el-tooltip>
                   <span>{{ record.token }}</span>
@@ -73,7 +73,7 @@
                       v-show="record.deviceUsername"
                       class="material-icons copy-icon"
                       @click="copyText(record.deviceUsername)">
-                      check
+                      content_copy
                     </i>
                   </el-tooltip>
                   <span>{{ record.deviceUsername }}</span>
