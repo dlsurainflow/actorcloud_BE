@@ -5,7 +5,7 @@
   "scripts": {
     "dev-localhost": "set VUE_APP_SERVER=https://dashboard.rainflow.live && node apps.config.js && vue-cli-service serve",
     "dev": "node get-apps && vue-cli-service serve",
-    "build": "node get-apps && vue-cli-service build",
+    "build": "yarn get-apps && vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "get-apps": "node apps.config.js"
