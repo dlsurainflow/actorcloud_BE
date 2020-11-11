@@ -475,6 +475,18 @@
                 </el-input>
               </el-form-item>
             </el-col>
+             <el-col :span="12">
+              <el-form-item prop="showOnMap" :label="$t('Show On Map')">
+                <el-switch
+                  v-model="record.showOnMap"
+                  active-color="#13ce66"
+                  inactive-color="#D0D3E0"
+                  :active-value="1"
+                  :inactive-value="0"
+                  @change="showOnMap">
+                </el-switch>
+              </el-form-item>
+            </el-col>
           </el-form>
         </el-row>
         <div v-if="!disabled" class="btn-bar">

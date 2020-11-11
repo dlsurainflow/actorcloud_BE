@@ -100,16 +100,16 @@
             <el-col class="describe" :span="12" :lg="10">
               <li>
                 <span></span>
-                {{ $t('dashboard.onlineNum') }}：{{ currentCount.status.online }}
+                Connected：{{ currentCount.status.online }}
               </li>
               <li>
                 <span></span>
-                {{ $t('dashboard.offlineNum') }}：{{ currentCount.status.offline }}
+                Disconnected：{{ currentCount.status.offline }}
               </li>
-              <li>
+              <!-- <li>
                 <span></span>
                 {{ $t('dashboard.sleepNum') }}：{{ currentCount.status.sleep }}
-              </li>
+              </li> -->
             </el-col>
           </el-row>
         </el-card>
@@ -175,7 +175,7 @@
     </el-row>
 
     <!-- Message count -->
-    <el-row class="metrics-charts line-chart">
+    <!-- <el-row class="metrics-charts line-chart">
       <el-card class="box-card">
         <template slot="header">
           <div class="header--title">{{ $t('dashboard.message') }}</div>
@@ -226,10 +226,10 @@
           </li>
         </div>
       </el-card>
-    </el-row>
+    </el-row> -->
 
     <!-- Traffic Statistics -->
-    <el-row class="metrics-charts line-chart">
+    <!-- <el-row class="metrics-charts line-chart">
       <el-card class="box-card">
         <template slot="header">
           <div class="header--title">{{ $t('dashboard.traffic') }}（KB）</div>
@@ -280,7 +280,7 @@
           </li>
         </div>
       </el-card>
-    </el-row>
+    </el-row> -->
 
     <!-- <el-row>
       <el-card class="box-card">
@@ -367,7 +367,6 @@ export default {
       onlineSituationData: [
         { value: 0, name: this.$t('dashboard.onlineNum') },
         { value: 0, name: this.$t('dashboard.offlineNum') },
-        { value: 0, name: this.$t('dashboard.sleepNum') },
       ],
       // Last 24 hours connection
       breakdownSituationData: [
@@ -518,7 +517,6 @@ export default {
         this.onlineSituationData = [
           { value: cc.status.online, name: this.$t('dashboard.onlineNum') },
           { value: cc.status.offline, name: this.$t('dashboard.offlineNum') },
-          { value: cc.status.sleep, name: this.$t('dashboard.sleepNum') },
         ]
         this.breakdownSituationData = [
           { value: cc.connect.failure, name: this.$t('dashboard.connectFailure') },

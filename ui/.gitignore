@@ -1,5 +1,5 @@
 .DS_Store
-node_modules
+node_modules/
 /dist
 /src/assets/micro.apps.json
 /src/assets/micro.private.json
@@ -22,3 +22,14 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+public/
+.deploy*/
+src/_drafts
+package-lock.json

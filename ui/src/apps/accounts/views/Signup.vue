@@ -14,14 +14,6 @@
           <div class="gradient-bg">
             <el-tabs v-model="currentTenantType">
               <el-tab-pane name="1">
-                <label
-                  v-if="!isInvitation"
-                  slot="label"
-                  class="el-radio">
-                  <span class="el-radio__inner"></span>
-                  <span class="el-radio__label">{{ $t('auth.personal') }}</span>
-                </label>
-
                 <el-form
                   label-position="left"
                   label-width="72px"
@@ -57,77 +49,6 @@
                     </router-link>
                   </p>
                 </div>
-              </el-tab-pane>
-
-              <el-tab-pane name="2">
-                <label
-                  v-if="!isInvitation"
-                  slot="label"
-                  class="el-radio">
-                  <span class="el-radio__inner"></span>
-                  <span class="el-radio__label">{{ $t('auth.business')}}</span>
-                </label>
-                <el-form
-                  label-position="left"
-                  label-width="72px"
-                  ref="businessRecord"
-                  :model="record"
-                  :rules="formRules">
-                  <div v-if="page === 1">
-                    <el-form-item :label="$t('auth.email')" prop="email">
-                      <el-input autocomplete="off" v-model="record.email"></el-input>
-                    </el-form-item>
-                    <el-form-item :label="$t('auth.username')" prop="username">
-                      <el-input autocomplete="off" v-model="record.username"></el-input>
-                    </el-form-item>
-                    <el-form-item :label="$t('auth.password')" prop="password">
-                      <el-input autocomplete="new-password" type="password" v-model="record.password"></el-input>
-                    </el-form-item>
-                    <div class="button-bar">
-                      <el-button type="success" @click="changePage">
-                        {{ $t('auth.nextStep') }}
-                      </el-button>
-                    </div>
-                    <div class="button-bar">
-                      <p>
-                        {{ $t('auth.hasCount') }}
-                        <router-link
-                          class="login-link"
-                          :to="{ path: '/login' }">
-                          {{ $t('auth.login') }}
-                        </router-link>
-                      </p>
-                    </div>
-                  </div>
-                  <div v-if="page === 2">
-                    <el-form-item :label="$t('auth.company')"  prop="company">
-                      <el-input v-model="record.company"></el-input>
-                    </el-form-item>
-                    <el-form-item :label="$t('auth.companySize')"  prop="companySize">
-                      <!-- autocomplete="new-password" Disable autofill form -->
-                      <el-input autocomplete="new-password" v-model="record.companySize"></el-input>
-                    </el-form-item>
-                    <el-form-item :label="$t('auth.contactPerson')" prop="contactPerson">
-                      <el-input autocomplete="new-password" v-model="record.contactPerson"></el-input>
-                    </el-form-item>
-                    <el-form-item :label="$t('auth.contactPhone')" prop="contactPhone">
-                      <el-input v-model="record.contactPhone"></el-input>
-                    </el-form-item>
-                    <el-form-item :label="$t('auth.companyAddress')" prop="companyAddress">
-                      <el-input v-model="record.companyAddress"></el-input>
-                    </el-form-item>
-                    <div class="button-bar">
-                      <el-button type="success" :loading="btnLoading" @click="signup">
-                        {{ $t('auth.signupNow') }}
-                      </el-button>
-                    </div>
-                    <div class="button-bar">
-                      <el-button type="text" @click="changePage">
-                        &lt;&lt; {{ $t('auth.backStep') }}
-                      </el-button>
-                    </div>
-                  </div>
-                </el-form>
               </el-tab-pane>
             </el-tabs>
           </div>
@@ -206,7 +127,7 @@ export default {
 
   methods: {
     signup() {
-      const formRef = this.currentTenantType === '1' ? 'personalRecord' : 'businessRecord'
+      const formRef = 'personalRecord'
       this.$refs[formRef].validate((valid) => {
         if (!valid) {
           return
@@ -254,7 +175,7 @@ export default {
     },
     changePage() {
       // Verify the first page form item
-      const formRef = this.currentTenantType === '1' ? 'personalRecord' : 'businessRecord'
+      const formRef = 'personalRecord'
       if (this.page === 1) {
         this.$refs[formRef].validate((valid) => {
           if (valid) {

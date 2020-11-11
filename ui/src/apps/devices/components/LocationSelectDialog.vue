@@ -5,10 +5,19 @@
       :title="$t('devices.locationSelect')"
       :visible.sync="dialogVisible"
       @confirm="confirm">
-      <div id="location-select-container" class="map" tabindex="0"></div>
-      <div id="pickerBox">
-        <input id="pickerInput" :placeholder="$t('devices.locationKey')" />
-        <div id="poiInfo"></div>
+      <div class="foobar1">
+        <l-map
+                ref = "mymap"
+                style="height: 400px; width: 100%"
+                :zoom="zoom"
+                :minZoom = "3"
+                :center="center"
+                @update:zoom="zoomUpdated"
+                @update:center="centerUpdated"
+                @update:bounds="boundsUpdated"
+              >
+                <l-tile-layer :url="url"></l-tile-layer>
+          </l-map>
       </div>
     </emq-dialog>
   </div>
@@ -17,10 +26,15 @@
 
 <script>
 import EmqDialog from '@/components/EmqDialog'
+import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
 
 export default {
   name: 'location-select-dialog',
-  components: { EmqDialog },
+  components: { 
+    EmqDialog,
+    LMap,
+    LTileLayer, 
+  },
 
   props: {
     deviceLocation: {
@@ -37,6 +51,10 @@ export default {
 
   data() {
     return {
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      zoom: 8,
+      center: [47.413220, -1.219482] ,
+      bounds: null,
       dialogVisible: false,
       position: {},
       positionPicker: undefined,
@@ -44,6 +62,10 @@ export default {
   },
 
   methods: {
+     mapResize() {
+      this.$refs.mymap.mapObject.invalidateSize()
+      console.log("test")
+    },
     /* eslint-disable */
     initMap() {
       const map = new AMap.Map('location-select-container', {
@@ -104,16 +126,38 @@ export default {
         poiPicker.suggest('')
       })
     },
+
+    zoomUpdated (zoom) {
+      this.zoom = zoom;
+    },
+    centerUpdated (center) {
+      this.center = center;
+    },
+    boundsUpdated (bounds) {
+      this.bounds = bounds;
+    },
+
+    updated() {
+      this.initMap()
+    },
   },
 
-  updated() {
-    this.initMap()
+  mounted() {
+  this.$nextTick(function () {
+        this.mapResize()
+  })
   },
+
 }
 </script>
 
 
 <style lang="scss">
+.foobar1 { /* <--- class we added above */
+    width: 100%;
+    height: 400px;
+  }
+
 .location-select-dialog {
   #location-select-container {
     height: 400px;
