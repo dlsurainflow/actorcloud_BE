@@ -481,7 +481,12 @@ export default {
         upLinkSystem: cache.upLinkSystem,
         gatewayProtocol: cache.gatewayProtocol,
         gatewayProtocolLabel: cache.gatewayProtocolLabel,
+        latitude: cache.latitude,
+        longitude: cache.longitude,
       }
+
+      console.log("latitude", cache.latitude)
+      console.log("longitude", cache.longitude)
       const hasExist = this.currentDevices.find(
         item => item.deviceIntID === cache.id,
       )

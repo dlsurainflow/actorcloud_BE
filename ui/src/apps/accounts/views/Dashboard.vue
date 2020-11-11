@@ -100,11 +100,11 @@
             <el-col class="describe" :span="12" :lg="10">
               <li>
                 <span></span>
-                {{ $t('dashboard.onlineNum') }}：{{ currentCount.status.online }}
+                Connected：{{ currentCount.status.online }}
               </li>
               <li>
                 <span></span>
-                {{ $t('dashboard.offlineNum') }}：{{ currentCount.status.offline }}
+                Disconnected：{{ currentCount.status.offline }}
               </li>
               <!-- <li>
                 <span></span>
@@ -367,7 +367,6 @@ export default {
       onlineSituationData: [
         { value: 0, name: this.$t('dashboard.onlineNum') },
         { value: 0, name: this.$t('dashboard.offlineNum') },
-        { value: 0, name: this.$t('dashboard.sleepNum') },
       ],
       // Last 24 hours connection
       breakdownSituationData: [
@@ -518,7 +517,6 @@ export default {
         this.onlineSituationData = [
           { value: cc.status.online, name: this.$t('dashboard.onlineNum') },
           { value: cc.status.offline, name: this.$t('dashboard.offlineNum') },
-          { value: cc.status.sleep, name: this.$t('dashboard.sleepNum') },
         ]
         this.breakdownSituationData = [
           { value: cc.connect.failure, name: this.$t('dashboard.connectFailure') },

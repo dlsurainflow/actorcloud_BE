@@ -13,7 +13,7 @@
           <template slot="header">
             <span>{{ $t('devices.deviceInfo') }}</span>
             <edit-toggle-button
-              :url="url"
+              :url="url2"
               :disabled="disabled"
               @toggleStatus="$emit('toggleStatus', 'edit')">
             </edit-toggle-button>
@@ -86,10 +86,10 @@
           </el-scrollbar>
         </el-card>
 
-        <!-- Device location -->
+        <!-- Device location 
         <el-card v-loading="loading" class="el-card__plain map-content">
           <template slot="header">
-            <span>{{ $t('devices.locationInfo') }}</span>
+            <span>Location</span>
             <a
               v-if="has(`PUT,/devices/:id`)"
               :class="['edit-toggle-button', mapVisible ? '' : 'active']"
@@ -99,8 +99,26 @@
               <i class="iconfont edit-icon__details icon-emq-edit"></i>
             </a>
           </template>
-          <!-- Location Map -->
-          <el-amap
+
+
+          Location Map 
+
+          <el-scrollbar v-show="mapVisible">
+                <l-map
+              style="height: 270px; width: 100%"
+              ref="mymap"
+              :zoom="zoom"
+              :minZoom = "3"
+              :center="center"
+              @update:zoom="zoomUpdated"
+              @update:center="centerUpdated"
+              @update:bounds="boundsUpdated"
+            >
+              <l-tile-layer :url="url"></l-tile-layer>
+            </l-map>
+            </el-scrollbar> -->
+
+          <!-- <el-amap
             v-show="mapVisible"
             vid="amap-detail"
             style="height: 100%;"
@@ -132,7 +150,7 @@
               :position="window.position"
               :content="window.content">
             </el-amap-info-window>
-          </el-amap>
+          </el-amap> -->
           <div v-if="!mapVisible" class="warp">
             <el-form
               label-position="left"
@@ -195,6 +213,7 @@
 
 <script>
 import { httpPut } from '@/utils/api'
+import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
 import LocationSelectDialog from './LocationSelectDialog'
 
 export default {
@@ -202,6 +221,8 @@ export default {
 
   components: {
     LocationSelectDialog,
+    LMap,
+    LTileLayer,
   },
 
   props: {
@@ -229,19 +250,23 @@ export default {
 
   data() {
     return {
-      url: '/devices',
+       url2: '/devices',
       btnLoading: false,
       Gateway: 3,
       mapVisible: true,
       circles: [],
       polygons: [],
       markers: [],
-      center: [116.397477, 39.908692],
       windows: [],
       stashRecord: {},
       // Device certification information
       clipboardContent: '',
       clipboardStatus: this.$t('oper.copy'),
+
+      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      zoom: 17,
+      center: [12.413220, 120.219482],
+      bounds: null,
     }
   },
 
@@ -252,7 +277,10 @@ export default {
   },
 
   methods: {
-    // Map markers
+    mapResize() {
+      this.$refs.mymap.mapObject.invalidateSize()
+      console.log("test")
+    },
     markMap() {
       this.markers = []
       if (this.record.longitude && this.record.latitude) {
@@ -262,29 +290,6 @@ export default {
         this.$refs.locationSelect.markers = [lnglatXY]
         this.$refs.locationSelect.mapCenter = lnglatXY
         // Get the address information by latitude and longitude and display it on the map
-        // eslint-disable-next-line
-        const geocoder = new AMap.Geocoder({
-          radius: 1000,
-          extensions: 'all',
-        })
-        geocoder.getAddress(lnglatXY, (status, result) => {
-          if (status === 'complete' && result.info === 'OK') {
-            this.record.location = result.regeocode.formattedAddress
-            this.windows.push({
-              position: lnglatXY,
-              content: `
-              ${this.$t('devices.location')}: ${this.record.location}
-              `,
-            })
-          } else {
-            this.windows.push({
-              position: lnglatXY,
-              content: `
-              ${this.$t('devices.location')}: (${this.$t('devices.unableLocation')}!)
-              `,
-            })
-          }
-        })
       }
     },
 
@@ -292,39 +297,22 @@ export default {
       this.mapVisible = !this.mapVisible
     },
 
-    updateLocation() {
-      this.btnLoading = true
-      const data = { ...this.record }
-      delete data.location
-      httpPut(`/devices/${this.record.id}`, data).then(() => {
-        this.$message.success(this.$t('oper.editSuccess'))
-        this.btnLoading = false
-        this.mapVisible = true
-        this.markMap()
-      }).catch(() => {
-        this.btnLoading = false
-      })
+    zoomUpdated (zoom) {
+      this.zoom = zoom;
     },
-
-    locationSelectConfirm() {
-      this.record.longitude = this.$refs.locationSelect.position.lng
-      this.record.latitude = this.$refs.locationSelect.position.lat
-      this.record.location = this.$refs.locationSelect.position.name
-      this.$refs.locationSelect.dialogVisible = false
+    centerUpdated (center) {
+      this.center = center;
     },
-
-    copyText(content) {
-      this.clipboardContent = content
-      this.clipboardStatus = this.$t('oper.copySuccess')
-      setTimeout(() => {
-        document.querySelector('#clipboard').select()
-        document.execCommand('Copy')
-        setTimeout(() => {
-          this.clipboardStatus = this.$t('oper.copy')
-        }, 500)
-      }, 500)
-    },
+    boundsUpdated (bounds) {
+      this.bounds = bounds;
+    }
   },
+
+  beforeMount() {
+  console.log("dawg")
+    this.mapResize()
+  },
+
 }
 </script>
 
@@ -402,7 +390,7 @@ export default {
       .warp {
         padding: 20px 20px 10px 20px;
         .el-form {
-          height: 100%;
+          height: 100%; 
         }
       }
     }

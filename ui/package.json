@@ -1,5 +1,5 @@
 {
-  "name": "RainFLOW_Dashboard",
+  "name": "rainflow_dashboard",
   "version": "1.0.0",
   "license": "Apache-2.0",
   "scripts": {
@@ -19,6 +19,7 @@
     "element-ui": "^2.5.4",
     "jsonlint": "^1.6.2",
     "jszip": "^3.1.5",
+    "leaflet": "^1.7.1",
     "lottie-web": "^5.4.1",
     "material-design-icons": "^3.0.1",
     "mqtt": "^3.0.0",
@@ -30,6 +31,7 @@
     "vue-grid-layout": "^2.1.13",
     "vue-i18n": "^7.8.1",
     "vue-router": "^3.0.1",
+    "vue2-leaflet": "^2.6.0",
     "vuex": "^3.0.1",
     "vuex-router-sync": "^5.0.0",
     "vuex-shared-mutations": "^0.0.4"
@@ -59,5 +61,8 @@
     "hooks": {
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
     }
+  },
+  "resolutions": {
+    "eslint-loader": "2.1.2"
   }
 }

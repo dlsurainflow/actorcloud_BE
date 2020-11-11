@@ -2,7 +2,7 @@
   <div class="create-product-view">
     <emq-dialog
       :title="$t('products.createProduct')"
-      :visible.sync="visible"
+      :visible.sync="dialogVisible"
       width="40%"
       @confirm="save">
       <el-form
@@ -90,6 +90,7 @@ export default {
   data() {
     return {
       record: {},
+      dialogVisible: false,
       rules: {
         productName: [
           { required: true, message: this.$t('products.productNameRequired'), trigger: 'blur' },
