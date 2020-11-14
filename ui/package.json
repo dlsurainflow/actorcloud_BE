@@ -4,8 +4,8 @@
   "license": "Apache-2.0",
   "scripts": {
     "dev-localhost": "set VUE_APP_SERVER=https://dashboard.rainflow.live && node apps.config.js && vue-cli-service serve",
-    "dev": "yarn get-apps && vue-cli-service serve",
-    "build": "yarn get-apps && vue-cli-service build",
+    "dev": "node get-apps && vue-cli-service serve",
+    "build": "node apps.config.js && vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "get-apps": "node apps.config.js"

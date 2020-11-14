@@ -39,7 +39,7 @@
           @click="$router.push({ path: '/products_mall' })">
           {{ $t('topBar.productMall') }}
         </a>
-        <a :href="`https:/rainflow.live`"
+        <a :href="`https://rainflow.live`"
            :class="['top-link']">
           Home
         </a>
